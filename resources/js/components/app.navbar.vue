@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-            <router-link :to="{ name: 'album.index' }" class="navbar-brand">Gallery App</router-link>
+            <router-link :to="{ name: 'album.index' }" class="navbar-brand">Gallery Logytech</router-link>
             <button class="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
@@ -14,7 +14,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" v-if="app.user">
+                    <li class="nav-item" >
                         <router-link :to="{ name: 'album.index' }" class="nav-link">Albums</router-link>
                     </li>
 
