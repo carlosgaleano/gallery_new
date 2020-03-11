@@ -6,6 +6,7 @@ use App\Album;
 use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class AlbumController extends Controller
 {
@@ -20,7 +21,17 @@ class AlbumController extends Controller
 
         $user = Auth::user();
 
-        $albums = Album::where('user_id', $user->id)->get();
+        if(empty($user)){
+
+            $user2=User::find(1);
+            $albums = Album::where('user_id', $user2->id)->get();
+
+        }else{
+            $albums = Album::where('user_id', $user->id)->get();
+
+        }
+
+       //
 
         foreach ($albums as $album)
         {

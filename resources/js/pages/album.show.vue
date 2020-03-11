@@ -62,13 +62,17 @@
         {
             if (this.app.user === null)
             {
-                this.app.$router.push({name:'auth.login'});
+             //   this.app.$router.push({name:'auth.login'});
+              //this.app.user  ={ "id": 1, "name": "Carlos Galeano", "email": "cags20031@gmail.com", "email_verified_at": null, "created_at": "2019-10-25 17:03:30", "updated_at": "2019-10-25 17:03:30" }
+               this.loadAlbum();
+
+               console.log('mostrar albums');
             }
             else
             {
                 this.loadAlbum();
 
-
+                 console.log('mostrar albums2');
             }
 
         },

@@ -2214,6 +2214,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "album-index",
   props: ['app'],
@@ -2226,9 +2227,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     if (this.app.user === null) {
-      this.app.$router.push({
-        name: 'auth.login'
-      });
+      //this.app.$router.push({name:'auth.login'});
+      //  this.app.user  ={ "id": 1, "name": "Carlos Galeano", "email": "cags20031@gmail.com", "email_verified_at": null, "created_at": "2019-10-25 17:03:30", "updated_at": "2019-10-25 17:03:30" }
+      this.getAlbums();
     } else {
       this.getAlbums();
     }
@@ -2324,11 +2325,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     if (this.app.user === null) {
-      this.app.$router.push({
-        name: 'auth.login'
-      });
+      //   this.app.$router.push({name:'auth.login'});
+      //this.app.user  ={ "id": 1, "name": "Carlos Galeano", "email": "cags20031@gmail.com", "email_verified_at": null, "created_at": "2019-10-25 17:03:30", "updated_at": "2019-10-25 17:03:30" }
+      this.loadAlbum();
+      console.log('mostrar albums');
     } else {
       this.loadAlbum();
+      console.log('mostrar albums2');
     }
   },
   methods: {
@@ -70149,7 +70152,14 @@ var render = function() {
     "div",
     { staticClass: "container" },
     [
-      _vm._m(0),
+      _c(
+        "div",
+        { staticClass: "jumbotron", staticStyle: { "text-align": "center" } },
+        [
+          _c("h1", { staticClass: "display-4" }, [_vm._v("Albums")]),
+          _vm._v("\n        " + _vm._s(this.app.user) + "\n    ")
+        ]
+      ),
       _vm._v(" "),
       _vm.loading
         ? _c("spinner", {
@@ -70218,18 +70228,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "jumbotron", staticStyle: { "text-align": "center" } },
-      [_c("h1", { staticClass: "display-4" }, [_vm._v("Albums")])]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
