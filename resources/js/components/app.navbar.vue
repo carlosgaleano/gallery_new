@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-            <router-link :to="{ name: 'album.index' }" class="navbar-brand">Gallery Logytech</router-link>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #BECDD4;">
+            <router-link :to="{ name: 'album.index' }" class="navbar-brand">Galleria de Fotos  Logytech Chile</router-link>
             <button class="navbar-toggler"
                     type="button"
                     data-toggle="collapse"

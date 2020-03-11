@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>Gallery App</title>
+        <title>Galeria de Fotos Logytech</title>
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}" type="text/css" />
 
