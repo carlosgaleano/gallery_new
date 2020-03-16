@@ -9,6 +9,7 @@
         <div v-else-if="album">
             <div class="jumbotron" style="text-align: center">
                 <h1 class="display-4">{{ album.title }}</h1>
+                {{ this.albumId }}
             </div>
 
             <div class="card" v-bind:style="{ 'border-bottom': album.photos.length ? '1px': '0' }">

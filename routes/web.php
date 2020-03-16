@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 
 Route::resource('album', 'AlbumController')->only([
-    'index', 'show', 'update', 'destroy', 'store'
+    'index', 'show', 'update', 'destroy', 'store','isSubAlbum'
 ]);;
+
+Route::get('album/isSubAlbum/{id}', 'AlbumController@isSubAlbum');
 
 Route::get('photo/download/{id}', 'PhotoController@download');
 Route::resource('photo', 'PhotoController')->only([

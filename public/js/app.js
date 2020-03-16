@@ -2228,6 +2228,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "album-index",
   props: ['app'],
@@ -2235,7 +2238,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       baseUrl: BASE_URL,
       albums: null,
-      loading: false
+      loading: false,
+      info: null
     };
   },
   mounted: function mounted() {
@@ -2255,12 +2259,26 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     goToAlbum: function goToAlbum(album) {
-      this.app.$router.push({
-        name: 'album.show',
-        params: {
-          id: album.id
-        }
+      var _this = this;
+
+      // let $this = this;
+      // this.info='prueba';
+      // this.app.request.get('album/').then((response) => {
+      this.app.request.get('album/isSubAlbum/' + album.id).then(function (response) {
+        _this.albums = response.data; // this.loading = false;
       });
+
+      if (this.info == '') {
+        this.app.$router.push({
+          name: 'album.show',
+          params: {
+            id: album.id
+          }
+        });
+      } else {
+        $this.albums = this.info;
+      } // this.app.$router.push({name:'album.show', params: {id: album.id}});
+
     }
   }
 });
@@ -2277,6 +2295,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_photo_big__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/photo.big */ "./resources/js/components/photo.big.vue");
+//
 //
 //
 //
@@ -70201,7 +70220,13 @@ var render = function() {
         { staticClass: "jumbotron", staticStyle: { "text-align": "center" } },
         [
           _c("h1", { staticClass: "display-4" }, [_vm._v("Albums")]),
-          _vm._v("\n        " + _vm._s(this.app.user) + "\n    ")
+          _vm._v(
+            "\n     \n        " +
+              _vm._s(_vm.info) +
+              "\n        " +
+              _vm._s(_vm.albums) +
+              "\n       \n    "
+          )
         ]
       ),
       _vm._v(" "),
@@ -70320,7 +70345,8 @@ var render = function() {
                 [
                   _c("h1", { staticClass: "display-4" }, [
                     _vm._v(_vm._s(_vm.album.title))
-                  ])
+                  ]),
+                  _vm._v("\n            " + _vm._s(this.albumId) + "\n        ")
                 ]
               ),
               _vm._v(" "),

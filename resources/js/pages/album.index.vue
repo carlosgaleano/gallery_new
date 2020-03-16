@@ -2,7 +2,10 @@
     <div class="container">
         <div class="jumbotron" style="text-align: center">
             <h1 class="display-4">Albums</h1>
-            {{this.app.user}}
+         
+            {{info}}
+            {{albums}}
+           
         </div>
 
         <spinner class="bigSpinner"
@@ -41,6 +44,8 @@
                 baseUrl: BASE_URL,
                 albums: null,
                 loading: false,
+                info: null,
+                
             }
         },
         mounted()
@@ -74,7 +79,22 @@
 
             goToAlbum(album)
             {
-                this.app.$router.push({name:'album.show', params: {id: album.id}});
+
+               // let $this = this;
+               // this.info='prueba';
+
+                // this.app.request.get('album/').then((response) => {
+                    this.app.request.get('album/isSubAlbum/' + album.id).then((response) => {
+                    this.albums = response.data;
+                   // this.loading = false;
+                }) 
+                if(this.info == ''){
+                    this.app.$router.push({name:'album.show', params: {id: album.id}});
+                }else{
+                     $this.albums =this.info;
+
+                }
+               // this.app.$router.push({name:'album.show', params: {id: album.id}});
             }
         }
     }
