@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->integer('subalbum')->nullable();
+            $table->integer('id_album_primario')->nullable();
             $table->timestamps();
         });
     }

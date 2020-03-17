@@ -10,6 +10,7 @@ import Register from './pages/auth.register';
 const routes = [
 
     { path: '/', component: AlbumIndex, name: 'album.index' },
+   // { path: '/:id', component: AlbumIndex, name: 'album.index' },
     { path: '/album/create', component: AlbumCreate, name: 'album.create' },
     { path: '/album/show/:id', component: AlbumShow, name: 'album.show' },
     { path: '/photo/create/:albumId', component: PhotoCreate, name: 'photo.create' },

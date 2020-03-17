@@ -15,7 +15,7 @@ class AlbumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
 
 
@@ -25,7 +25,8 @@ class AlbumController extends Controller
 
             $user2=User::find(1);
            // $albums = Album::where('user_id', $user2->id)->get();
-            $albums =Album::where([['user_id','=',$user2->id],['subalbum','=',0]])->get();
+            $albums = $id? Album::where([['user_id','=',1],['subalbum','=',1],['id_album_primario','=',$id]])->get() 
+            : Album::where([['user_id','=',$user2->id],['subalbum','=',0]])->get();
 
         }else{
             $albums = Album::where('user_id', $user->id)->get();
@@ -36,7 +37,8 @@ class AlbumController extends Controller
 
         foreach ($albums as $album)
         {
-            $album['latestPhoto'] = Photo::where('album_id', $album->id)->latest()->first();
+           $album['latestPhoto'] = Photo::where('album_id', $album->id)->latest()->first();
+         //$album['latestPhoto'] = Photo::where([['album_id','=',$album->id],['primario','=',1]] )->get();
         }
        //dd($albums);
 
@@ -45,11 +47,14 @@ class AlbumController extends Controller
 
     public function isSubAlbum($id){
 
-        $albums =Album::where([['user_id','=',1],['subalbum','=',1],['id_album_primario','=',$id]])->get();
-       //$albums=Album::where('user_id', 1)->get();
-        return response()->json($albums);
+        return   $albums =Album::where([['user_id','=',1],['subalbum','=',1],['id','=',$id]])->get();
+       //$albums=Album::wheAlbum::where([['user_id','=',1],['subalbum','=',1],['id_album_primario','=',$id]])->get();re('user_id', 1)->get();
+    
+       // return response()->json($albums);
        
     }
+
+
 
     /**
      * Store a newly created resource in storage.

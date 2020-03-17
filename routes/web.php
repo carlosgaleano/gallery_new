@@ -20,6 +20,7 @@ Route::resource('album', 'AlbumController')->only([
 ]);;
 
 Route::get('album/isSubAlbum/{id}', 'AlbumController@isSubAlbum');
+Route::get('album/id/{id}', 'AlbumController@index');
 
 Route::get('photo/download/{id}', 'PhotoController@download');
 Route::resource('photo', 'PhotoController')->only([

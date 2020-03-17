@@ -20,6 +20,8 @@ class CreateAlbumsTable extends Migration
             $table->string('desc')->nullable();
             $table->integer('photosCount')->default(0);
             $table->timestamps();
+            $table->integer('subalbum')->nullable();
+            $table->integer('id_album_primario')->nullable();
         });
     }
 

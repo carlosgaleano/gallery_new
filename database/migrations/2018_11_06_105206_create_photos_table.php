@@ -22,6 +22,7 @@ class CreatePhotosTable extends Migration
             $table->string('caption')->nullable();
             $table->string('file_name');
             $table->timestamps();
+            $table->integer('primario')->nullable();
         });
     }
 
