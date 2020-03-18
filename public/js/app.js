@@ -2030,6 +2030,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "app-navbar",
   props: ['app'],
@@ -2044,6 +2049,10 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    reload: function reload() {
+      console.log('redirect');
+      location.reload(); //this.renderComponent = true;
     }
   }
 });
@@ -69941,6 +69950,8 @@ var render = function() {
         staticStyle: { "background-color": "#BECDD4" }
       },
       [
+        _vm._m(0),
+        _vm._v(" "),
         _c(
           "router-link",
           {
@@ -69950,7 +69961,7 @@ var render = function() {
           [_vm._v("Galleria de Fotos  Logytech Chile")]
         ),
         _vm._v(" "),
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c(
           "div",
@@ -69962,7 +69973,14 @@ var render = function() {
             _c("ul", { staticClass: "navbar-nav ml-auto" }, [
               _c(
                 "li",
-                { staticClass: "nav-item" },
+                {
+                  staticClass: "nav-item",
+                  on: {
+                    click: function($event) {
+                      return _vm.reload()
+                    }
+                  }
+                },
                 [
                   _c(
                     "router-link",
@@ -70067,6 +70085,29 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticStyle: { "margin-jeft": "17 px", "margin-right": "7 px" },
+        attrs: { align: "center" }
+      },
+      [
+        _c("img", {
+          attrs: {
+            alt: "image",
+            src: "/images/logo_logy.png",
+            height: "57",
+            width: "107",
+            border: "1"
+          }
+        })
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

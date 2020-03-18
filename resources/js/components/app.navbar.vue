@@ -1,6 +1,10 @@
 <template>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #BECDD4;">
+
+             <div align="center" style="margin-jeft: 17 px; margin-right: 7 px" >
+                                    <img alt="image" src="/images/logo_logy.png"   height="57" width="107" border="1"  />
+                                </div>
             <router-link :to="{ name: 'album.index' }" class="navbar-brand">Galleria de Fotos  Logytech Chile</router-link>
             <button class="navbar-toggler"
                     type="button"
@@ -14,8 +18,9 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" >
-                        <router-link :to="{ name: 'album.index' }" class="nav-link">Albums</router-link>
+                    <li class="nav-item" @click="reload()" >
+                        <router-link :to="{ name: 'album.index' }" class="nav-link"    >Albums</router-link>
+                       <!--  <a :href="$router.resolve({name: 'album.index'}).href">link</a> -->
                     </li>
 
                     <li class="nav-item" v-if="app.user">
@@ -60,6 +65,11 @@
                         $this.app.$router.push({name: 'auth.login'});
                     }
                 });
+            },
+            reload(){
+                console.log('redirect');
+                location.reload();
+                 //this.renderComponent = true;
             }
         }
     }

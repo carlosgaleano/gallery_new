@@ -6,6 +6,8 @@ use App\Album;
 use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use App\User;
 
 class AlbumController extends Controller
@@ -37,8 +39,8 @@ class AlbumController extends Controller
 
         foreach ($albums as $album)
         {
-           $album['latestPhoto'] = Photo::where('album_id', $album->id)->latest()->first();
-         //$album['latestPhoto'] = Photo::where([['album_id','=',$album->id],['primario','=',1]] )->get();
+           //$album['latestPhoto'] = Photo::where('album_id', $album->id)->latest()->first();
+         $album['latestPhoto'] = Photo::where([['album_id','=',$album->id],['primario','=',1]] )->latest()->first();
         }
        //dd($albums);
 
@@ -82,7 +84,11 @@ class AlbumController extends Controller
      */
     public function show($id)
     {
-        $album = Album::with('photos')->where('id', $id)->first();
+        $album = Album::with('photos')->where([['id','=',$id]] )->first();
+
+     /*    $album = db::table('albums')->leftJoin('photos', 'albums.id', '=', 'photos.album_id')->where([['albums.id','=',2],['photos.primario','=',0]])->get(); */
+
+      //  dd($album);
 
         return response()->json($album, 200);
        // echo $id;
