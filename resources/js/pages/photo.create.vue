@@ -10,10 +10,12 @@
 
 
 
-            <div class="card-header">Upload Photo</div>
 
-            <input type="file"  name="items" data-max-files="1" required style="margin: 20px"/>
 
+            <div class="card-header" >Upload Photo</div>
+
+            <input type="file" class="filepond"  multiple name="items"  data-max-file-size="6MB"   data-max-files="20"  required style="margin: 20px"/>
+  
 
         </div>
     </div>
@@ -45,9 +47,10 @@
 
                 FilePond.setOptions({
                     server: BASE_URL + '/photo?album_id='+this.albumId,
-                    allowRevert: false,
+                    allowRevert: true,
                     allowMultiple: true,
-                    instantUpload: false,
+                    instantUpload: true,
+                    
 
                 });
 
@@ -60,7 +63,7 @@
                     }
                     console.log(file);
 
-                    $this.goToAlbum($this.albumId);
+                   // $this.goToAlbum($this.albumId);
                 });
 
             }

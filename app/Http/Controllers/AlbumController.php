@@ -23,17 +23,17 @@ class AlbumController extends Controller
 
         $user = Auth::user();
 
-        if(empty($user)){
+        /* if(empty($user)){ */
 
             $user2=User::find(1);
            // $albums = Album::where('user_id', $user2->id)->get();
-            $albums = $id? Album::where([['user_id','=',1],['subalbum','=',1],['id_album_primario','=',$id]])->get() 
-            : Album::where([['user_id','=',$user2->id],['subalbum','=',0]])->get();
+            $albums = $id? Album::where([['user_id','=',1],['subalbum','=',1],['id_album_primario','=',$id]])->orderBy('id_ord','asc')->get() 
+            : Album::where([['user_id','=',$user2->id],['subalbum','=',0]])->orderBy('id_ord','asc')->get();
 
-        }else{
+       /*  }else{
             $albums = Album::where('user_id', $user->id)->get();
 
-        }
+        } */
 
        //
 
@@ -48,12 +48,26 @@ class AlbumController extends Controller
     }
 
     public function isSubAlbum($id){
-
+       // return   $albums =Album::where([['user_id','=',1],['id_album_primario','=',$id]])->first();
         return   $albums =Album::where([['user_id','=',1],['subalbum','=',1],['id','=',$id]])->get();
        //$albums=Album::wheAlbum::where([['user_id','=',1],['subalbum','=',1],['id_album_primario','=',$id]])->get();re('user_id', 1)->get();
     
        // return response()->json($albums);
        
+    }
+
+    public function  haveIdPrimario($id){
+
+         $album=  Album::where([['user_id','=',1],['id_album_primario','=',$id]])->first();
+       
+      // return   $album;
+//return $album;
+
+//return response()->json($album);
+         
+        if(empty($album)){return  $resul=['respuesta'=>true];} else {$resul=['respuesta'=>false];}
+        return response()->json($resul, 200);
+        
     }
 
 

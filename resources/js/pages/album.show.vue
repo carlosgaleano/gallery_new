@@ -7,15 +7,15 @@
                  message="Loading...">
         </spinner>
         <div v-else-if="album">
-            <div class="jumbotron" style="text-align: center">
-                <h1 class="display-4">{{ album.title }}</h1>
-                {{ this.albumId }}
+            <div class="jumbotron" v-if="app.user" style="text-align: center">
+                <h1 class="display-4"><!-- {{ album.title }} --></h1>
+               <!--  {{ this.albumId }} -->
             </div>
 
             <div class="card" v-bind:style="{ 'border-bottom': album.photos.length ? '1px': '0' }">
-                <div class="card-header">
+                <div class="card-header colorfondo"  >
                     {{ album.title }}
-                    <router-link :to="{ name: 'photo.create', params: { albumId: album.id } }" class="float-right">Upload Photo</router-link>
+                    <router-link   v-if="app.user"  :to="{ name: 'photo.create', params: { albumId: album.id } }" class="float-right">Upload Photo</router-link>
                 </div>
             </div>
 
@@ -25,7 +25,7 @@
                         <img class="card-img-top"
                              :src="baseUrl + '/storage/images/photos/' + photo.file_name"
                              style="height: 250px" />
-                        <div class="card-body" style="text-align: center" v-if="photo.desc">
+                        <div class="card-body  colorfondo" style="text-align: center" v-if="photo.desc">
                             <h5 class="card-title">{{ photo.desc }}</h5>
                         </div>
                     </div>
@@ -107,4 +107,13 @@
         cursor: pointer;
         margin-bottom: 25px;
     }
+    .jumbotron {
+     background-image: url('/images/logytech_logo_3.png');
+     background-size: contain;
+     color: #FFFFFF;
+}
+.colorfondo{
+background-color: #9c9c9c !important;
+
+}
 </style>

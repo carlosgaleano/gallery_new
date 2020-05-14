@@ -1,12 +1,16 @@
 <template>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #BECDD4;">
-
-             <div align="center" style="margin-jeft: 17 px; margin-right: 7 px" >
-                                    <img alt="image" src="/images/logo_logy.png"   height="57" width="107" border="1"  />
+        
+             
+           
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFFFFF; color:#FFFFFF">
+              
+             <div align="" style="margin-jeft: 17 px; margin-right: 7 px" @click="reload()" >
+                                    <img alt="image" src="/images/logo.jpg"   height="57" width="107" border="1"  />
                                 </div>
-            <router-link :to="{ name: 'album.index' }" class="navbar-brand">Galleria de Fotos  Logytech Chile</router-link>
-            <button class="navbar-toggler"
+              <div   class="col-sm-12  col-md-9 " style="text-align:center" @click="reload()"   > <router-link :to="{ name: 'album.index' }" class="navbar-brand serif">Galeria de Fotos  Logytech Chile</router-link></div>                  
+           
+          <!--   <button class="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarSupportedContent"
@@ -14,12 +18,12 @@
                     aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
+            </button> -->
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"   >
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item" @click="reload()" >
-                        <router-link :to="{ name: 'album.index' }" class="nav-link"    >Albums</router-link>
+                        <router-link :to="{ name: 'album.index' }" class="nav-link"    >Albumes</router-link>
                        <!--  <a :href="$router.resolve({name: 'album.index'}).href">link</a> -->
                     </li>
 
@@ -35,7 +39,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <div v-if="!app.user">
                                 <router-link :to="{ name: 'auth.login' }" class="dropdown-item">Login</router-link>
-                                <router-link :to="{ name: 'auth.register' }" class="dropdown-item">Register</router-link>
+                              <div v-if="app.user">  <router-link :to="{ name: 'auth.register' }" class="dropdown-item">Register</router-link></div>
                             </div>
                             <a href="javascript:void(0)" v-else class="dropdown-item" @click="logout">Logout</a>
 
@@ -76,5 +80,24 @@
 </script>
 
 <style scoped>
+
+.serif {
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 3em !important;
+  
+}
+
+
+
+@media screen and (max-width: 400px){
+
+.serif {
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 1em !important;
+  
+}
+}
+
+
 
 </style>

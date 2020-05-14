@@ -8,7 +8,7 @@ import Login from './pages/auth.login';
 import Register from './pages/auth.register';
 
 const routes = [
-
+     
     { path: '/', component: AlbumIndex, name: 'album.index' },
    // { path: '/:id', component: AlbumIndex, name: 'album.index' },
     { path: '/album/create', component: AlbumCreate, name: 'album.create' },

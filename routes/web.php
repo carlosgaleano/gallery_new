@@ -11,15 +11,23 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('app');
 });
+
+
+/* Route::get('{any}', function () {
+    return view('app');
+})->where('any', '.*'); */
 
 Route::resource('album', 'AlbumController')->only([
     'index', 'show', 'update', 'destroy', 'store','isSubAlbum'
 ]);;
 
 Route::get('album/isSubAlbum/{id}', 'AlbumController@isSubAlbum');
+Route::get('album/haveIdPrimario/{id}', 'AlbumController@haveIdPrimario');
 Route::get('album/id/{id}', 'AlbumController@index');
 
 Route::get('photo/download/{id}', 'PhotoController@download');

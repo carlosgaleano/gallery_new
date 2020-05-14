@@ -15,13 +15,16 @@
                 <router-view :app="this" style="margin-top: 25px; margin-bottom: 50px"></router-view>
             </transition>
         </div>
+         <custom-footer></custom-footer> 
     </div>
+   
 </template>
 
 <script>
     import NProgress from 'nprogress';
     import Helper from './utils/helper';
     import AppNavbar from "./components/app.navbar";
+    import CustomFooter from './components/CustomFooter';
 
 
 
@@ -29,7 +32,8 @@
 
     export default {
         name: "app",
-        components: {AppNavbar},
+        components: {AppNavbar,
+        CustomFooter},
         data()
         {
             return {

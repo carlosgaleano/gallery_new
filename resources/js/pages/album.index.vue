@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
-    <div class="jumbotron" style="text-align: center">
-      <h1 class="display-4">Albums</h1>
-
+  <div class="container" style="height: 100%;margin-buttom: 50px">
+    <div class="jumbotron" v-if="app.user" style="text-align: center">
+      <h1 iid="banner" class="display-4"></h1>
+      <!-- {{this.idprimario+'  id primario'}} -->
       <!-- {{info}}
       {{albums}}-->
     </div>
@@ -20,7 +20,7 @@
           <!--  {{album}} -->
           <img
             v-if="album.latestPhoto"
-            class="card-img-top"
+            class="card-img-top colorfondo"
             :src="baseUrl + '/storage/images/photos/' + album.latestPhoto.file_name"
             style="height: 250px"
             alt="Card image cap"
@@ -32,7 +32,7 @@
             style="height: 250px"
           />
           <hr />
-          <div class="card-body" style="text-align: center">
+          <div class="card-body colorfondo" style="text-align: center">
             <h5 class="card-title">{{ album.title }}</h5>
           </div>
         </div>
@@ -50,9 +50,11 @@ export default {
       baseUrl: BASE_URL,
       albums: null,
       loading: false,
-      info: null
+      info: null,
+      idprimario: null
     };
   },
+
   mounted() {
     if (this.app.user === null) {
       //this.app.$router.push({name:'auth.login'});
@@ -76,23 +78,39 @@ export default {
 
     goToAlbum(album) {
       let $this = this;
-      // this.info='prueba';
 
-       this.app.request.get("album/isSubAlbum/" + album.id).then(response => {
+      /*  this.app.request.get("album/isSubAlbum/" + album.id).then(response => {
           this.info= response.data;
         
+        }); */
+
+      this.app.request
+        .get("album/haveIdPrimario/" + album.id)
+        .then(response => {
+          this.idprimario = response.data.respuesta;
+          
+          if (this.idprimario === true) {
+            this.app.$router.push({
+              name: "album.show",
+              params: { id: album.id }
+            });
+          } else {
+            this.loading = true;
+            // this.app.request.get('album/').then((response) => {
+            this.app.request.get("album/id/" + album.id).then(response => {
+              this.albums = response.data;
+              this.loading = false;
+            });
+          }
+
+          //console.log(this.idprimario);
         });
 
-      if (this.info == "") {
-        this.app.$router.push({ name: "album.show", params: { id: album.id } });
-      } else {
-        this.loading = true;
-        // this.app.request.get('album/').then((response) => {
-        this.app.request.get("album/id/" + album.id).then(response => {
-          this.albums = response.data;
-          this.loading = false;
-        });
-      }
+      //this.info='test';
+
+      //console.log(this.idprimario.id);
+      console.log(this.idprimario);
+
       //this.app.$router.push({name:'album.show', params: {id: album.id}});
     }
   }
@@ -102,5 +120,16 @@ export default {
 <style scoped>
 .album {
   cursor: pointer;
+}
+.jumbotron {
+  background-image: url("/images/logytech_logo_3.png");
+  background-size: contain;
+  color: #ffffff;
+}
+.colorfondo {
+  ---background-color: #9c9c9c !important;
+  color: #828282 !important;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px !important;
 }
 </style>
